@@ -1,0 +1,304 @@
+3. Functional Requirements - Data Analysis and Visualization
+After data is loaded into the database, users can make changes from the front end, and they can also view data from the front end. Now, the business analyst team wants to analyze and visualize the data.
+
+
+Use Power BI for the below requirements:
+Req - 3
+	 Data Analysis and Visualization
+	Functional Requirements 3.1
+
+
+Rubric: - (4%)
+	* Export following tables as a CSV file,  click here for the direction
+* CDW_SAPP_BRANCH
+* CDW_SAPP_CREDIT_CARD
+* CDW_SAPP_CUSTOMER 
+* Import all CSV files into Power BI.
+	Functional Requirements 3.2
+
+
+Rubric: - (8%)
+	Create an appropriate visualization to answer the following question:
+* Find and plot which transaction type has the highest transaction count.
+Note: Take a screenshot of the graph.  Save a copy of the visualization, making sure it is PROPERLY NAMED!
+	Functional Requirements 3.3
+
+
+Rubric: - (5%)
+	Create an appropriate visualization to answer the following question:
+* Find and plot which state has a high number of customers.
+
+
+Note: Take a screenshot of the graph.  Save a copy of the visualization, making sure it is PROPERLY NAMED!
+	Functional Requirements 3.4
+
+
+Rubric: - (5%)
+	Create an single appropriate visualization to answer the following question:
+* Find and plot the sum of all transactions for the top 10 customers, and which customer has the highest transaction amount. (by transaction dollar value) 
+
+
+Hint (use CUST_SSN). 
+
+
+Note: Take a screenshot of the graph.  Save a copy of the visualization, making sure it is PROPERLY NAMED!
+	
+
+
+
+Answers:
+Functional Requirements 3.2:
+Create a visualization to find and plot which transaction type has the highest transaction count.
+
+
+Implementation Steps:
+1. In Power BI, create a new report.
+2. Choose a suitable chart type, such as a bar chart.
+3. Drag the "TRANSACTION_TYPE" field to the "X-Axis" or "Legend" (depending on the type of chart you prefer).
+4. In the Visualization panel, drag the "TRANSACTION_ID" field to the  ‘Y-Axis’ or "Values" field. Change the Aggregation functions to the ‘Count’ for TRANSACTION_ID from the visualization panel. 
+5. Take a screenshot of the graph.
+6. Save the screenshot with a proper name.
+
+
+  
+
+
+
+
+
+ Functional Requirements 3.3:
+Implementation Steps: 
+1. In Power BI Desktop, go to the "Report" view.
+2. Click on the "New Measure" in the "Modeling" tab.
+3. Enter the following DAX formula:
+
+
+CustomerCountByState = COUNTROWS(CDW_SAPP_CUSTOMER)
+	
+
+4. In your visualization panel, select the column chart or any other appropriate chart. 
+5. Drag the "CUST_STATE" field to the "X-Axis" or "Legend" in your visualization.
+6. Drag the "CustomerCountByState" measure to the “Y-Axis” or  "Values" field.
+7. Take a screenshot of the graph.
+
+
+
+
+
+
+  
+
+
+
+Functional Requirements 3.4:
+
+
+Find and plot the sum of all transactions for the top 10 customers, and identify which customer has the highest transaction amount (by transaction dollar value).
+
+
+Implementation Steps:
+
+
+1. Create a “Table” Visualization:
+    * Choose the "table" visualization from the visualization pane.
+
+
+2. Configure the values in Table:
+   * Place the 'CUST_SSN' field in the column of the table.
+   * Use the ' Sum of TRANSACTION_VALUE' field in the columns as well. 
+   * Select the visualized table in “Report View”. Sort the  table in descending order. 
+
+
+3. Apply Filters:
+   * In the Filters Panel, filter the customers using CUST_SSN.
+   * Expand the CUST_SSN, filter and select the ‘filter type’ as “Top N”. 
+   * In the show Items, Select the ‘Top’ option and enter the value as 10. 
+   * In the filter “By Value”, drag and place the ‘sum of TRANSACTION VALUE’ from Data Panel.
+   * Click on Apply Filter. 
+
+
+4. Now you can see the CUST_SSN and sum of transaction value of each customer and the total sum of Top 10 customers as well. 
+5. Go to the Visualization Panel and select the stacked column chart or any other appropriate visualization chart of your choice.
+6. The expected output is: 
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+5. Functional Requirements - Data Analysis and Visualization for LOAN Application
+ 
+After the data is loaded into the database, the business analyst team wants to analyze and visualize the data.
+ 
+Use Power BI for Visualization
+Req-5
+	Data Analysis and Visualization
+	Functional Requirements 5.1
+Rubric: - (1%)
+	❖   Export  “CDW-SAPP_loan_application” table as a CSV file, click here for the direction
+❖   Import the CSV file into Power BI.
+	Functional Requirements 5.2
+Rubric: - (4%)
+	Create an appropriate visualization to answer the following question
+●         Find and plot the percentage of applications approved for self-employed applicants. Use the appropriate chart or graph to represent this data.
+ 
+Note: Take a screenshot of the graph.  Save a copy of the visualization, making sure it is PROPERLY NAMED!
+	Functional Requirements 5.3
+Rubric: - (4%)
+	Create an appropriate visualization to answer the following question
+●         Find the percentage of rejection for married male applicants. Use the ideal chart or graph to represent this data.
+ 
+Note: Take a screenshot of the graph.  Save a copy of the visualization, making sure it is PROPERLY NAMED!
+	Functional Requirements 5.4
+Rubric: - (4%)
+	Create an appropriate visualization to answer the following question
+●         Find and plot the top three months with the largest volume of transaction data. Use the ideal chart or graph to represent this data.
+ 
+Note: Take a screenshot of the graph.  Save a copy of the visualization, making sure it is PROPERLY NAMED!
+	Functional Requirements 5.5
+Rubric: - (4%)
+	Create an appropriate visualization to answer the following question
+●         Find and plot which branch processed the highest total dollar value of healthcare transactions. Use the ideal chart or graph to represent this data.
+Note: Take a screenshot of the graph.  Save a copy of the visualization, making sure it is PROPERLY NAMED!
+	 
+ 
+ 
+
+Answers: 
+
+
+Requirement 5.2:
+ 
+1. In Power BI Desktop, go to the "Report" view.
+2. Click on the "New Measure" in the "Modeling" tab.
+3. Enter the DAX code for creating a measure to calculate the percentage of applications approved for self-employed applicants:
+ 
+ApprovalPercentage =
+    CALCULATE(
+        COUNTROWS('cdw_sapp_loan_data'),
+        'cdw_sapp_loan_data'[Application_Status] = "Y" && 'cdw_sapp_loan_data'[Self_Employed] = "Yes"
+    ) / COUNTROWS('cdw_sapp_loan_data')
+ 
+	 
+
+
+4. After creating this measure, use it in your Power BI visualization:
+
+
+   * Select the pie chart or another suitable chart. 
+   * Place the 'Self_Employed' field in the "Legend" or "category" field.
+   * Use the 'ApprovalPercentage' measure in the "Values" field.
+ 
+This setup should allow you to create a pie chart representing the percentage of applications approved for self-employed applicants, with 'Self_Employed' as the legend or category.
+ 
+
+   
+ 
+ 
+Requirement 5.3
+To create a visualization for the percentage of rejection for married male applicants, you can follow these implementation steps in Power BI:
+ 
+1. Create a New Measure:
+	* Go to the "Modeling" tab in Power BI Desktop.
+	* Click on "New Measure."
+	* Write a measure to calculate the percentage of rejection for married male applicants. The measure may look like this:
+         
+ 
+RejectionPercentage =
+        CALCULATE(
+            COUNTROWS('cdw_sapp_loan_data'),
+            'cdw_sapp_loan_data'[Application_Status] = "N" && 'cdw_sapp_loan_data'[Married] = "Yes" && 'cdw_sapp_loan_data'[Gender] = "Male"
+        ) / COUNTROWS('cdw_sapp_loan_data')
+	        
+ 
+2. Create a Pie Chart:
+	*Drag and drop the 'RejectionPercentage' measure into the "Values" field of a pie chart.
+	*Drag 'Application_Status' into the "Legend" field to show the breakdown for 'Approved' and 'Not Approved'.
+	*Drag 'Married' into the "Details" or "Tooltip" field if you want to see the breakdown specifically for married applicants.
+ 
+3. Format the Pie Chart:
+ 	*Format the pie chart as needed (e.g., remove labels if not necessary, adjust colors).
+	*You may want to enable data labels to display the percentages directly on the chart.
+ 
+In this setup, the legend will represent the 'Application_Status' (Approved or Not Approved), the values will be the 'RejectionPercentage' measure, and the details (optional) can show the breakdown for 'Married' applicants.
+ 
+
+ 
+   
+ 
+ 
+ 
+Requirement 5.4
+              
+1. Create a New Calculated Column for Date:
+	* In the 'cdw_sapp_credit' table, create a new calculated column by going to the "Modeling" tab and selecting "New Column."
+	* Use the following DAX formula to convert 'TIMEID' to a proper date:
+ 
+	DateColumn = DATE(
+	 LEFT('cdw_sapp_credit'[TIMEID], 4), // Extract Year
+	 MID('cdw_sapp_credit'[TIMEID], 5, 2), // Extract Month
+ 	RIGHT('cdw_sapp_credit'[TIMEID], 2) // Extract Day
+	)
+ 
+	 
+ 
+	* This formula extracts the year, month, and day components from 'TIMEID' and creates a new date column. Under the dropdown option of ‘DateColumn’, you can see the Date Hierarchy, where you can find Year, 	Quarter, Month and Day options. 
+              
+2. Use the New DateColumn in Visualizations:
+	*In your visualizations, drag and drop the “Month” from the DateColumn' into the "Axis" or “X-Axis” if you are using the “Area Chart” or "Category" field of your visualizations.
+              
+3. Create the DAX Measure for 'TransactionVolume': 
+ 
+	* Create the 'TransactionVolume' DAX measure to use 'DateColumn'. 
+          
+	TransactionVolume = SUM('cdw_sapp_credit'[TRANSACTION_VALUE])
+
+
+	 
+4.     Drag and drop the TransactionVolume Measure to Y-axis. 
+        
+
+
+
+
+
+
+Requirement 5.5
+
+To visualize which branch processed the highest total dollar value of healthcare transactions, a suitable chart would be a bar chart or a column chart. Here are the implementation steps:
+ 
+Implementation Steps:
+1. You can use DAX to create a calculated column or measure to filter only healthcare transactions in your dataset. Here's an example using DAX: 
+
+	* The 'TRANSACTION_TYPE' field contains values such as "Healthcare" for healthcare transactions, create a measure as follows:
+ 
+	DAXTotalDollarValue_Healthcare =
+	CALCULATE(
+	    SUM('cdw_sapp_credit'[TRANSACTION_VALUE]),
+	    'cdw_sapp_credit'[TRANSACTION_TYPE] = "Healthcare"
+	)
+
+
+	 
+ 
+Note: This measure calculates the total dollar value for healthcare transactions.
+ 
+2. Filter in the Visual:
+   	* Drag the 'BRANCH_CODE' to the Axis (X-axis) field.
+   	* Drag the 'TotalDollarValue_Healthcare' measure to the Values (Y-axis) field.
+   	* Apply any necessary sorting to identify the branch with the highest total dollar value.
+   	* Take a screenshot of the visual.
+ 
+This way, the measure filters only healthcare transactions, and you can visualize the total dollar value for each branch. If 'TRANSACTION_TYPE' uses different values for healthcare transactions, adjust the DAX measure accordingly.
+
+
+
+
