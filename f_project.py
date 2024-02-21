@@ -1,4 +1,3 @@
-import pandas as pd
 import pyspark as ps
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
