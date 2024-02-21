@@ -4,7 +4,6 @@ from pyspark.sql.functions import *
 import os
 import re
 from pyspark.sql.types import StringType
-import numpy as np
 import requests
 import mysql.connector
 
